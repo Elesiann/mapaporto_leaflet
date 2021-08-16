@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maps - Portcho de Imbitchuba</title>
+    <title>Portcho de Imbitchuba</title>
 
     <!-- =================== LEAFLET =================== -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -13,47 +13,99 @@
 
     <!-- ================= ÁREAS ================= -->
     <script src="areamar.js"></script>
-    <script src="a1.js"></script>
-    <script src="a0-a2.js"></script>
+    <script src="a0a2.js"></script>
+    <script src="a2.js"></script>
+    <script src="a4.js"></script>
+    <script src="a6_1.js"></script>
+    <script src="a10_1.js"></script>
+    <script src="a11.js"></script>
+    <script src="teoc3.js"></script>
 
 
-
-    <!-- =================== ESTILOS =================== -->
     <style>
+        /* reset css */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ============== */
+
         #mapid {
-            height: 800px;
+            height: 100vh;
         }
     </style>
-    <script src="/rails.geojson"></script>
+
+
 </head>
 
 <body>
 
+
     <div id="mapid"></div>
 
     <script>
-        var mymap = L.map('mapid').setView([-28.23187751, -48.65429339], 15);
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox/streets-v11',
-            tileSize: 512,
-            zoomOffset: -1,
-            accessToken: 'pk.eyJ1IjoiZWxlc2lhbiIsImEiOiJja3Nlc2hjbmoxM28xMnVvYXJxZ2k0b3d3In0.KTiNgwZ987gI28TKYNSsHg'
-        }).addTo(mymap);
+        let mymap = L.map('mapid').setView([-28.2280, -48.6522], 16);
 
-        L.geoJSON(areaMarJSON).addTo(mymap)
-        L.geoJSON(a1JSON).addTo(mymap)
+        // Esri World Imagery tiles | http://bl.ocks.org/d3noob/8663620 | This block appears to have no license. Please contact the author to request a license. 
+        L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+            {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                maxZoom: 17,
+                id: 'mapbox/streets-v11',
+                tileSize: 512,
+                zoomOffset: -1,
+                subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+                accessToken: 'pk.eyJ1IjoiZWxlc2lhbiIsImEiOiJja3Nlc2hjbmoxM28xMnVvYXJxZ2k0b3d3In0.KTiNgwZ987gI28TKYNSsHg'
+            }).addTo(mymap);
+
+        // importando todas as áreas
+        L.geoJSON(areamarJSON).addTo(mymap)
         L.geoJSON(a0a2JSON).addTo(mymap)
+        L.geoJSON(a2JSON).addTo(mymap)
+        L.geoJSON(a4JSON).addTo(mymap)
+        L.geoJSON(a6_1JSON).addTo(mymap)
+        L.geoJSON(a10_1JSON).addTo(mymap)
+        L.geoJSON(a11JSON).addTo(mymap)
+        L.geoJSON(teoc3JSON).addTo(mymap)
+
+        // adicionando marcadores
+        let marcadorAreaMaritima = L.marker([-28.2263, -48.6509]).addTo(mymap);
+        marcadorAreaMaritima.bindPopup("<b>Área Marítima!</b><br><a href=> Veja mais </a>").openPopup();
+
+        let marcadorA1 = L.marker([-28.22946, -48.649]).addTo(mymap);
+        marcadorA1.bindPopup("<b>Área A1!</b><br><a href=> Veja mais </a>").openPopup();
+
+        let marcadorA0_A2 = L.marker([-28.22948, -48.65031]).addTo(mymap);
+        marcadorA0_A2.bindPopup("<b>Área A0 e A2!</b><br><a href=> Veja mais </a>").openPopup();
+
+        let marcadorA4 = L.marker([-28.23249, -48.65242]).addTo(mymap);
+        marcadorA4.bindPopup("<b>Área A4!</b><br><a href=> Veja mais </a>").openPopup();
+
+        let marcadorTEOC3 = L.marker([-28.23045, -48.65505]).addTo(mymap);
+        marcadorTEOC3.bindPopup("<b>Área TEOC3!</b><br><a href=> Veja mais </a>").openPopup();
+
+        let marcadorA11 = L.marker([-28.23283, -48.65869]).addTo(mymap);
+        marcadorA11.bindPopup("<b>Área A11!</b><br><a href=> Veja mais </a>").openPopup();
+
+        let marcador10_1 = L.marker([-28.23437, -48.65839]).addTo(mymap);
+        marcador10_1.bindPopup("<b>Área A10.1!</b><br><a href=> Veja mais </a>").openPopup();
+
+        let marcadorA6_1 = L.marker([-28.23406, -48.65434]).addTo(mymap);
+        marcadorA6_1.bindPopup("<b>Área A6.1!</b><br><a href=> Veja mais </a>").openPopup();
+
+
+        // desabilitando controles (zoom, zoom com clique) para deixar o mapa mais estático
+        mymap.removeControl(mymap.zoomControl);
+        mymap.scrollWheelZoom.disable();
+        mymap.doubleClickZoom.disable()
+        // mymap.dragging.disable()
+
+
+
+
     </script>
-
-
-
-
-
-
-
 
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
