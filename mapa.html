@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maps - Portcho de Imbitchuba</title>
+
+    <!-- =================== LEAFLET =================== -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- ================= ÁREAS ================= -->
+    <script src="areamar.js"></script>
+    <script src="a1.js"></script>
+    <script src="a0-a2.js"></script>
+
+
+
+    <!-- =================== ESTILOS =================== -->
+    <style>
+        #mapid {
+            height: 800px;
+        }
+    </style>
+    <script src="/rails.geojson"></script>
+</head>
+
+<body>
+
+    <div id="mapid"></div>
+
+    <script>
+        var mymap = L.map('mapid').setView([-28.23187751, -48.65429339], 15);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+            accessToken: 'pk.eyJ1IjoiZWxlc2lhbiIsImEiOiJja3Nlc2hjbmoxM28xMnVvYXJxZ2k0b3d3In0.KTiNgwZ987gI28TKYNSsHg'
+        }).addTo(mymap);
+
+        L.geoJSON(areaMarJSON).addTo(mymap)
+        L.geoJSON(a1JSON).addTo(mymap)
+        L.geoJSON(a0a2JSON).addTo(mymap)
+    </script>
+
+
+
+
+
+
+
+
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+</body>
+
+</html>
