@@ -11,17 +11,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-    <!-- ================= ÁREAS ================= -->
-    <script src="areamar.js"></script>
-    <script src="a0a2.js"></script>
-    <script src="a2.js"></script>
-    <script src="a4.js"></script>
-    <script src="a6_1.js"></script>
-    <script src="a10_1.js"></script>
-    <script src="a11.js"></script>
-    <script src="teoc3.js"></script>
-
-
     <style>
         /* reset css */
         * {
@@ -35,15 +24,10 @@
             height: 100vh;
         }
     </style>
-
-
 </head>
 
 <body>
-
-
     <div id="mapid"></div>
-
     <!-- chamando as latitudes e longitudes -->
     <script src="/latlng/TEOC3.js"></script>
     <script src="/latlng/A0A2.js"></script>
@@ -160,21 +144,12 @@
         }).addTo(mymap)
         polygonA10_1.bindPopup("<b>Área A4!</b> Galpão bem grande porém não tao comprido <br> ( ͡° ͜ʖ ͡°) <br><a href=> Veja mais </a>")
 
-
-
-
-
-        // desabilitando controles (zoom, zoom com clique) para deixar o mapa mais estático
+        // opções para desabilitar controles (zoom, zoom com clique) para deixar o mapa mais estático
         // mymap.removeControl(mymap.zoomControl);
         // mymap.scrollWheelZoom.disable();
         // mymap.doubleClickZoom.disable()
         // mymap.dragging.disable()
-
-
-
-
     </script>
-
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
