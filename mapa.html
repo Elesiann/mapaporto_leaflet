@@ -44,385 +44,120 @@
 
     <div id="mapid"></div>
 
+    <!-- chamando as latitudes e longitudes -->
+    <script src="/latlng/TEOC3.js"></script>
+    <script src="/latlng/A0A2.js"></script>
+    <script src="/latlng/A1.js"></script>
+    <script src="/latlng/AREAMAR.js"></script>
+    <script src="/latlng/A4.js"></script>
+    <script src="/latlng/A6_1.js"></script>
+    <script src="/latlng/A11.js"></script>
+    <script src="/latlng/A10_1.js"></script>
+
     <script>
 
-        let mymap = L.map('mapid').setView([-28.2280, -48.6522], 16);
+        let mymap = L.map('mapid').setView([-28.2280, -48.6522], 15);
 
         // Esri World Imagery tiles | http://bl.ocks.org/d3noob/8663620 | This block appears to have no license. Please contact the author to request a license. 
         L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
             {
-                maxZoom: 17,
                 id: 'mapbox/streets-v11',
                 tileSize: 512,
                 zoomOffset: -1,
                 subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-                accessToken: 'pk.eyJ1IjoiZWxlc2lhbiIsImEiOiJja3Nlc2hjbmoxM28xMnVvYXJxZ2k0b3d3In0.KTiNgwZ987gI28TKYNSsHg'
             }).addTo(mymap);
 
-        // importando todas as áreas
-        L.geoJSON(areamarJSON).addTo(mymap)
-        L.geoJSON(a0a2JSON).addTo(mymap)
-        L.geoJSON(a1JSON).addTo(mymap)
-        L.geoJSON(a4JSON).addTo(mymap)
-        L.geoJSON(a6_1JSON).addTo(mymap)
-        L.geoJSON(a10_1JSON).addTo(mymap)
-        L.geoJSON(a11JSON).addTo(mymap)
-        L.geoJSON(teoc3JSON).addTo(mymap)
+        // instanciando e estilizando polígonos com seus respectivos popups
 
-
-        // adicionando polígonos com seus respectivos popups
-        let polygonTEOC3 = L.polygon([
-            [
-                -28.231677515513123,
-                - 48.65830779075622
-            ],
-            [
-                -28.2304959395007,
-                - 48.65438103675842
-            ],
-            [
-                -28.229758629440294,
-                -48.65478873252869
-            ],
-            [
-                -28.231677515513123,
-                -48.65830779075622
-            ]
-        ]).addTo(mymap);
+        let polygonTEOC3 = L.polygon(latlngTEOC3, {
+            color: '#2D3778',
+            weight: 5,
+            opacity: 1,
+            dashArray: 8,
+            fill: true,
+            fillColor: '#2D3778',
+            fillOpacity: .5
+        }).addTo(mymap)
         polygonTEOC3.bindPopup("<b>Área TEOC3!</b> Fora do porto, galera pesca bastante aqui e etc...<br><a href=> Veja mais </a>")
-
-        let polygonAreaMar = L.polygon([
-            [
-                -28.220967232461838,
-                -48.6519992351532
-            ],
-            [
-                -28.2212224767728,
-                -48.65278244018555
-            ],
-            [
-                -28.22485255202661,
-                -48.651355504989624
-            ],
-            [
-                -28.225107787048056,
-                -48.652364015579224
-            ],
-            [
-                -28.228274541181296,
-                -48.65115165710449
-            ],
-            [
-                -28.227764085672845,
-                -48.649424314498894
-            ],
-            [
-                -28.220967232461838,
-                -48.6519992351532
-            ]
-        ]).addTo(mymap);
+        // ================================================================
+        let polygonA0A2 = L.polygon(latlngA0A2, {
+            color: '#2D3778',
+            weight: 5,
+            opacity: 1,
+            dashArray: 8,
+            fill: true,
+            fillColor: '#2D3778',
+            fillOpacity: .5
+        }).addTo(mymap)
+        polygonA0A2.bindPopup("<b>Área A0A2!</b> Tem umas casinhas, fica perto dos navios... É bem legal aqui, só é meio barulhento.<br><a href=> Veja mais </a>")
+        // ================================================================
+        let polygonA1 = L.polygon(latlngA1, {
+            color: '#2D3778',
+            weight: 5,
+            opacity: 1,
+            dashArray: 8,
+            fill: true,
+            fillColor: '#2D3778',
+            fillOpacity: .5
+        }).addTo(mymap)
+        polygonA1.bindPopup("<b>Área A1!</b> Área meio vazia... vai ter que fazer vários negócio aqui, não curti muito...<br><a href=> Veja mais </a>")
+        // ================================================================
+        let polygonAreaMar = L.polygon(latlngAreaMar, {
+            color: '#2D3778',
+            weight: 5,
+            opacity: 1,
+            dashArray: 8,
+            fill: true,
+            fillColor: '#2D3778',
+            fillOpacity: .5
+        }).addTo(mymap)
         polygonAreaMar.bindPopup("<b>Área Maritima!</b> Bem louco esse lugar aqui, da pra tomar altos banho, dar ponta, levar um barquinho cheio de tchutchucas...<br><a href=> Veja mais </a>")
 
-        let polygonA0A2 = L.polygon([
-            [
-                -28.22835961686203,
-                - 48.65113019943237
-            ],
-            [
-                -28.23014619049173,
-                -48.6504864692688
-            ],
-            [
-                -28.230013852729968,
-                -48.649848103523254
-            ],
-            [
-                -28.22976808216562,
-                -48.64993929862976
-            ],
-            [
-                -28.22966410214109,
-                -48.64970326423645
-            ],
-            [
-                -28.228416333944843,
-                -48.65020215511322
-            ],
-            [
-                -28.22848723025596,
-                -48.65088880062103
-            ],
-            [
-                -28.22835961686203,
-                -48.65113019943237
-            ]
-        ]).addTo(mymap);
-        polygonA0A2.bindPopup("<b>Área A0A2!</b> Tem umas casinhas, fica perto dos navios... É bem legal aqui, só é meio barulhento.<br><a href=> Veja mais </a>")
+        // ================================================================
+        let polygonA4 = L.polygon(latlngA4, {
+            color: '#2D3778',
+            weight: 5,
+            opacity: 1,
+            dashArray: 8,
+            fill: true,
+            fillColor: '#2D3778',
+            fillOpacity: .5
+        }).addTo(mymap)
+        polygonA4.bindPopup("<b>Área A4!</b> Área cheia de silos pra guardar várias coisas...<br><a href=> Veja mais </a>")
 
-        let polygonA1 = L.polygon([
-            [
-                [
-                    -28.22834071116106,
-                    -48.64991247653961
-                ],
-                [
-                    -28.22837379613556,
-                    -48.649917840957634
-                ],
-                [
-                    -28.229163106057477,
-                    - 48.649579882621765
-                ],
-                [
-                    -28.23014619049173,
-                    -48.649424314498894
-                ],
-                [
-                    -28.229966589203855,
-                    -48.649182915687554
-                ],
-                [
-                    -28.23005166353579,
-                    -48.648603558540344
-                ],
-                [
-                    -28.22976335580306,
-                    -48.648582100868225
-                ],
-                [
-                    -28.229734997623346,
-                    -48.64844262599945
-                ],
-                [
-                    -28.229805893058515,
-                    -48.648324608802795
-                ],
-                [
-                    -28.22977280852797,
-                    -48.648115396499634
-                ],
-                [
-                    -28.229394698879002,
-                    -48.64828705787659
-                ],
-                [
-                    -28.22917255883554,
-                    -48.64834606647491
-                ],
-                [
-                    -28.228950418329713,
-                    -48.64844262599945
-                ],
-                [
-                    -28.228898427931796,
-                    -48.648592829704285
-                ],
-                [
-                    -28.22883698470159,
-                    -48.648619651794434
-                ],
-                [
-                    -28.22843051321083,
-                    -48.64849627017975
-                ],
-                [
-                    -28.228260361894595,
-                    -48.64854454994202
-                ],
-                [
-                    -28.22834071116106,
-                    -48.64991247653961
-                ]
-            ]
-        ]).addTo(mymap);
-        polygonA1.bindPopup("<b>Área A1!</b> Área meio vazia... vai ter que fazer vários negócio aqui, não curti muito...<br><a href=> Veja mais </a>")
+        // ================================================================
+        let polygonA6_1 = L.polygon(latlngA6_1, {
+            color: '#2D3778',
+            weight: 5,
+            opacity: 1,
+            dashArray: 8,
+            fill: true,
+            fillColor: '#2D3778',
+            fillOpacity: .5
+        }).addTo(mymap)
+        polygonA6_1.bindPopup("<b>Área A4!</b> Galpão bem grande e comprido com um pátio grande <br> ( ͡° ͜ʖ ͡°)... <br><a href=> Veja mais </a>")
+        // ================================================================
+        let polygonA11 = L.polygon(latlngA11, {
+            color: '#2D3778',
+            weight: 5,
+            opacity: 1,
+            dashArray: 8,
+            fill: true,
+            fillColor: '#2D3778',
+            fillOpacity: .5
+        }).addTo(mymap)
+        polygonA11.bindPopup("<b>Área A4!</b> Galpão bem grande e comprido <br> ( ͡° ͜ʖ ͡°)<br><a href=> Veja mais </a>")
 
-        let polygonA4 = L.polygon([
-            [
-                [
-                    -28.232192678559056,
-                    -48.653554916381836
-                ],
-                [
-                    -28.23235809735824,
-                    -48.653571009635925
-                ],
-                [
-                    -28.2329205193574,
-                    -48.652594685554504
-                ],
-                [
-                    -28.2327692801196,
-                    -48.65241229534149
-                ],
-                [
-                    -28.23304812729757,
-                    -48.65200459957123
-                ],
-                [
-                    -28.23269838665309,
-                    -48.65170955657958
-                ],
-                [
-                    -28.232972507795893,
-                    -48.65146279335022
-                ],
-                [
-                    -28.23212178470948,
-                    -48.65044355392456
-                ],
-                [
-                    -28.232027259503454,
-                    -48.650599122047424
-                ],
-                [
-                    -28.2322588461095,
-                    -48.650861978530884
-                ],
-                [
-                    -28.232112332192656,
-                    -48.651076555252075
-                ],
-                [
-                    -28.23256605205627,
-                    -48.65163445472717
-                ],
-                [
-                    -28.232306108620403,
-                    -48.65213871002197
-                ],
-                [
-                    -28.2320887008969,
-                    -48.65250885486603
-                ],
-                [
-                    -28.232159594768444,
-                    -48.65268051624298
-                ],
-                [
-                    -28.23210760593392,
-                    -48.652793169021606
-                ],
-                [
-                    -28.23222103608571,
-                    -48.65299701690674
-                ],
-                [
-                    -28.23227302486497,
-                    -48.65329205989837
-                ],
-                [
-                    -28.23224939360481,
-                    -48.65346372127533
-                ],
-                [
-                    -28.232192678559056,
-                    -48.653554916381836
-                ]
-            ]
-        ]).addTo(mymap);
-        polygonA4.bindPopup("<b>Área A4!</b> Área heia de silos pra guardar várias coisas...<br><a href=> Veja mais </a>")
-
-        let polygonA6_1 = L.polygon([
-            [
-                [
-                    -28.23441872147747,
-                    -48.65636587142944
-                ],
-                [
-                    -28.235420661945724,
-                    -48.65543246269226
-                ],
-                [
-                    -28.23505202456555,
-                    -48.654837012290955
-                ],
-                [
-                    -28.235562445214345,
-                    -48.65438103675842
-                ],
-                [
-                    -28.235482101385255,
-                    -48.65413963794708
-                ],
-                [
-                    -28.235155999340193,
-                    -48.65388751029968
-                ],
-                [
-                    -28.234782634905383,
-                    -48.65342617034912
-                ],
-                [
-                    -28.234792087185674,
-                    -48.6532062292099
-                ],
-                [
-                    -28.233790140814975,
-                    -48.65349054336548
-                ],
-                [
-                    -28.233043401080284,
-                    -48.6541074514389
-                ],
-                [
-                    -28.23441872147747,
-                    -48.65636587142944
-                ]
-            ]
-        ]).addTo(mymap);
-        polygonA6_1.bindPopup("<b>Área A4!</b> Galpão bem grande e comprido <br> ( ͡° ͜ʖ ͡°)... <br><a href=> Veja mais </a>")
-
-        let polygonA11 = L.polygon([
-            [
-                [
-                    -28.232877983343442,
-                    -48.65751385688782
-                ],
-                [
-                    -28.23186656646105,
-                    -48.65837216377258
-                ],
-                [
-                    -28.23323717581731,
-                    -48.66068959236145
-                ],
-                [
-                    -28.234362007584714,
-                    -48.659820556640625
-                ],
-                [
-                    -28.232877983343442,
-                    -48.65751385688782
-                ]
-            ]
-        ]).addTo(mymap)
-        polygonA11.bindPopup("<b>Área A4!</b> Galpão bem grande e comprido <br> ( ͡° ͜ʖ ͡°) de novo... <br><a href=> Veja mais </a>")
-
-        let polygonA10_1 = L.polygon([
-            [
-                [
-                    -28.234040628289694,
-                    -48.659080266952515
-                ],
-                [
-                    -28.235297782960508,
-                    -48.658082485198975
-                ],
-                [
-                    -28.234759004200992,
-                    -48.65724563598633
-                ],
-                [
-                    -28.233577462308833,
-                    -48.65830779075622
-                ],
-                [
-                    -28.234040628289694,
-                    -48.659080266952515
-                ]
-            ]
-        ]).addTo(mymap)
+        // ================================================================
+        let polygonA10_1 = L.polygon(latlngA10_1, {
+            color: '#2D3778',
+            weight: 5,
+            opacity: 1,
+            dashArray: 8,
+            fill: true,
+            fillColor: '#2D3778',
+            fillOpacity: .5
+        }).addTo(mymap)
         polygonA10_1.bindPopup("<b>Área A4!</b> Galpão bem grande porém não tao comprido <br> ( ͡° ͜ʖ ͡°) <br><a href=> Veja mais </a>")
 
 
