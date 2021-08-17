@@ -61,7 +61,11 @@
             }).addTo(mymap);
 
         // importando todas as áreas
-        L.geoJSON(areamarJSON).addTo(mymap)
+        L.geoJSON(areamarJSON, {
+            color: "#fff",
+            weight: 3,
+            dashArray: '6',
+        }).addTo(mymap)
         L.geoJSON(a0a2JSON).addTo(mymap)
         L.geoJSON(a2JSON).addTo(mymap)
         L.geoJSON(a4JSON).addTo(mymap)
