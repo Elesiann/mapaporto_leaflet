@@ -30,7 +30,8 @@
     <div id="mapid"></div>
     <!-- chamando as latitudes e longitudes -->
     <script src="/latlng/TEOC3.js"></script>
-    <script src="/latlng/A0A2.js"></script>
+    <script src="/latlng/A2.js"></script>
+    <script src="/latlng/A0.js"></script>
     <script src="/latlng/A1.js"></script>
     <script src="/latlng/AREAMAR.js"></script>
     <script src="/latlng/A4.js"></script>
@@ -143,6 +144,18 @@
             fillOpacity: .5
         }).addTo(mymap)
         polygonA10_1.bindPopup("<b>Área A4!</b> Galpão bem grande porém não tao comprido <br> ( ͡° ͜ʖ ͡°) <br><a href=> Veja mais </a>")
+        // ================================================================
+        let polygonA0 = L.polygon(latlngA0, {
+            color: '#2D3778',
+            weight: 5,
+            opacity: 1,
+            dashArray: 8,
+            fill: true,
+            fillColor: '#2D3778',
+            fillOpacity: .5
+        }).addTo(mymap)
+        polygonA0.bindPopup("<b>Área A4!</b> Oi mazinho <br><a href=> Veja mais </a>")
+
 
         // opções para desabilitar controles (zoom, zoom com clique) para deixar o mapa mais estático
         // mymap.removeControl(mymap.zoomControl);
